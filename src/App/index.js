@@ -13,10 +13,22 @@ function App() {
   const unsubscribe = useRef();
 
   const onWindowSizeChange = useCallback(() => {
-    update(positionRef, {
-      width: window.innerWidth - handlerSize,
-      height: window.innerHeight - handlerSize,
-    });
+    const width = window.innerWidth - handlerSize;
+    const height = window.innerHeight - handlerSize;
+
+    setPos((prevVal) => {
+      const x = Math.min(prevVal.x, width);
+      const y = Math.min(prevVal.y, height);
+
+      update(positionRef, {
+        x,
+        y,
+        width,
+        height,
+      });
+
+      return { x, y };
+    });    
   }, []);
 
   const onPositionChange = useCallback((snapshot) => {

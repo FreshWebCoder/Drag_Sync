@@ -1,6 +1,7 @@
 .App {
   background-color: #7D8997;
   height: 100vh;
+  overflow: hidden;
 }
 
 .drag-handler {
